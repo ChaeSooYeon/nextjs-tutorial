@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Seo from "../components/Seo";
 
 export default function Home({ results }){
@@ -5,10 +6,14 @@ export default function Home({ results }){
         <div className="container">
             <Seo title={"Home"} />
             {results?.map((movie) => (
-                <div className="movie" key={movie.id}>
-                    <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
-                    <h4>{movie.original_title}</h4>
-                </div>
+                <Link href={`/movies/${movie.id}`} key={movie.id} >
+                    <a>    
+                        <div className="movie" >
+                            <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
+                            <h4>{movie.original_title}</h4>
+                        </div>
+                    </a>
+                </Link>
             ))}
             <style jsx>{`
                 .container {  
