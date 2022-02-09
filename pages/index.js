@@ -1,16 +1,12 @@
 import Seo from "../components/Seo";
 import { useEffect, useState } from "react";
 
-const API_KEY = "92d212c7f1de73e63ed4de76f730528f";
-
 export default function Home(){
     const [movies, setMovies] = useState([]);
 
     useEffect(() => {
        (async() => {
-            const {results} = await (await fetch(
-                `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=ko-KR`
-            )).json();
+            const {results} = await (await fetch(`/api/movies`)).json();
             console.log(results);
             setMovies(results);
        })();
@@ -26,7 +22,7 @@ export default function Home(){
                 </div>
             ))}
             <style jsx>{`
-                .container {
+                .container {  
                     display: grid;
                     grid-template-columns: 1fr 1fr;
                     padding: 20px;
